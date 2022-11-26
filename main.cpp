@@ -4,7 +4,6 @@ using namespace std;
 
 int main()
 {
-    cout<<"maquina de busca";
-
+    cout<<"maquina de busca\n";
     return 0;
 }
