@@ -17,8 +17,8 @@ class Indice {
                 indice_[doclista[i]].insert(nome); 
             }
         }
-    ~Indice(){
-    }
+        ~Indice(){
+        }
     
     private:
         vector<string> separar(string doc){
