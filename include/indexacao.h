@@ -34,9 +34,12 @@ class Indice {
                         resultado[i].push_back(x);
                     }
                 }
+                for (int i = 0; i < resultado.size(); i++){
+                    resultado[i] = normalizar(resultado[i]);
+                }
                 return resultado;
         }
-        //* Divide as palavras da String.
+        //* Divide as palavras da String(doc) e as normaliza.
     
         string normalizar(string palavra){
             string resultado;
