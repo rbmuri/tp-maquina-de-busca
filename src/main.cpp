@@ -5,7 +5,7 @@
 
 using namespace std;
 
-
+//* turns a file to a vector of strings
 vector<string> filetostr(string dir){
     vector<string> sfile;
     string word;
@@ -14,11 +14,14 @@ vector<string> filetostr(string dir){
 
     while (file.good()) {
         file >> word;
-        sfile.insert(word);
+        sfile.push_back(word);
     }  
     sfile.pop_back();
     return sfile;
 }
+
+
+
 
 
 int main()
@@ -29,10 +32,17 @@ int main()
 
     filetostr(nome);
 
-    
-    
-    
+/*
+    for (directory_entry& entry : directory_iterator("./input")){
+    vector<string> sfile = filetostr(entry.path());
+    index.indexar(sfile, entry.path())
+    }  
+*/
 
+    for (directory_entry& entry : directory_iterator("./input")){
+        cout << entry.path();
+    }  
+    
     
 
     /*index.indexar(file, nome);*/
