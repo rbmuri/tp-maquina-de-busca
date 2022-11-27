@@ -1,3 +1,4 @@
+#include <iostream>
 #include <map>
 #include <set>
 #include <string>
@@ -7,6 +8,8 @@ using namespace std;
 
 class Indice {
     public:
+        Indice(){
+        }
         void indexar(string doc, string nome){
             int i;
             vector<string> doclista = separar(doc);
@@ -14,15 +17,30 @@ class Indice {
                 indice_[doclista[i]].insert(nome); 
             }
         }
+    ~Indice(){
+    }
     
     private:
-        vector<string> separar(string doc);
-            //* codigo do lucas
-        
+        vector<string> separar(string doc){
+            vector<string> resultado(0);
+                resultado.push_back("");
+                int i = 0;
+                for(auto x: doc){
+                    if(x == ' '){
+                    resultado.push_back("");
+                    i++;
+                    }
+                    else{
+                        resultado[i].push_back(x);
+                    }
+                }
+                return resultado;
+        }
+        //* Divide as palavras da String.
 
         string normalizar(string palavra);
             //* codigo do lucas
         
 
-        std::map<string, std::set<string>> indice_;
+        map<string, set<string>> indice_;
 };
