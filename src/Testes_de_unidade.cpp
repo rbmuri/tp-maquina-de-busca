@@ -54,7 +54,7 @@ vector<string> separar(string doc)
     }
     return resultado;
 }
-//* Divide as palavras da String(doc) e as normaliza.
+//* Divide as palavras da string(que era um documento) e as normaliza.
 
 TEST_CASE("separar")
 {
@@ -115,4 +115,38 @@ TEST_CASE("separar")
         CHECK(testando[0] == "cuidado");
     }
     //* Testa caso de palavra única do método separar.
+}TEST_CASE("normalizar")
+{
+    //* Teste do método privado normalizar.
+    string testar;
+    SUBCASE("normalizar padrão 1")
+    {
+        string testeN_01("ÑÕS");
+        testar = normalizar(testeN_01);
+        CHECK(testar.size() == 3);
+        CHECK(testar == "nos");
+    }
+    SUBCASE("normalizar padrão 2")
+    {
+        string testeN_02("D||--...--è");
+        testar = normalizar(testeN_02);
+        CHECK(testar.size() == 2);
+        CHECK(testar == "de");
+    }
+    SUBCASE("normalizar padrão 3")
+    {
+        string testeN_03("ñ..Ö--T||â");
+        testar = normalizar(testeN_03);
+        CHECK(testar.size() == 4);
+        CHECK(testar == "nota");
+    }
+    //* Testes de casos padrões do método provativo normalizar.
+    SUBCASE("normalizar vazio")
+    {
+        string testeN_04("");
+        testar = normalizar(testeN_04);
+        CHECK(testar.size() == 0);
+        CHECK(testar == "");
+    }
+    //* Teste do método privado normalizar para um caso de string vazia.
 }
