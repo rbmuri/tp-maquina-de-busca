@@ -39,8 +39,8 @@ int main()
     }  
 */
 
-    for (directory_entry& entry : directory_iterator("./input")){
-        cout << entry.path();
+    for (const auto& entry : filesystem::directory_iterator("./input")){
+        cout << entry.path().string();
     }  
     
     
