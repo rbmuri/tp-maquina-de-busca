@@ -20,7 +20,7 @@ class Indice {
         ~Indice(){
         }
     
-    private:
+    protected:
         vector<string> separar(string doc){
             vector<string> resultado(0);
                 resultado.push_back("");
