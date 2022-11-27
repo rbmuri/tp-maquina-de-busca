@@ -30,7 +30,7 @@ int main()
     Indice index;
     nome = "README.txt";
 
-    filetostr(nome);
+    
 
 /*
     for (directory_entry& entry : directory_iterator("./input")){
@@ -38,9 +38,10 @@ int main()
     index.indexar(sfile, entry.path())
     }  
 */
-
-    for (const auto& entry : filesystem::directory_iterator("./input")){
-        cout << entry.path().string();
+    filesystem::path dir;
+    dir = "input";
+    for (const auto& entry : filesystem::directory_iterator(dir)){
+        cout << entry.path();
     }  
     
     
