@@ -12,8 +12,8 @@ class Indice {
         Indice(){
         }
         void indexar(vector<string> doclista, string nome){
-            int i; set<string> a(0);
-            indice.insert(nome, a)
+            int i; set<string> a;
+            indice_[nome] = a;
             for (i=0; i<doclista.size(); i++){
                 indice_[nome].insert(doclista[i]); 
             }
@@ -55,23 +55,7 @@ class Indice {
                 res.insert(str[i]);
             }
         }    
-        set<string> separarSET(string doc){
-            set<string> resultado;
-                int i = 0;
-                for(auto x: doc){
-                    if(x == ' '){
-                    resultado.push_back("");
-                    i++;
-                    }
-                    else{
-                        resultado[i].push_back(x);
-                    }
-                }
-                for (int i = 0; i < resultado.size(); i++){
-                    resultado[i] = normalizar(resultado[i]);
-                }
-                return resultado;
-        }
+        
 
         vector<string> separar(string doc){
             vector<string> resultado(0);

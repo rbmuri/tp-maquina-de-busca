@@ -29,7 +29,6 @@ int main()
     string nome;
     Indice index;
     nome = "README.txt";
-
     
 
 /*
