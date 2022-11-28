@@ -3,6 +3,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,9 +11,8 @@ class Indice {
     public:
         Indice(){
         }
-        void indexar(string doc, string nome){
+        void indexar(vector<string> doclista, string nome){
             int i;
-            vector<string> doclista = separar(doc);
             for (i=0; i<doclista.size(); i++){
                 indice_[doclista[i]].insert(nome); 
             }
@@ -20,8 +20,59 @@ class Indice {
         ~Indice(){
         }
         
+        set<string> consulta(){
+            string cons;
+            cin >> cons;
+            vector<string> vet = separar(cons);
+            set<string> palavras = vectoset( vet );
+            set<string> docs = indice_[vet[0]];
+            for (auto x : palavras){
+                
+                set<string> temp = indice_[x];
+                docs = intersection(docs, temp);
+            }
+            return docs;
+        }
 
     protected:
+
+        set<string> intersection(set<string> v1, set<string> v2){
+            set<string> v3;
+
+            sort(v1.begin(), v1.end());
+            sort(v2.begin(), v2.end());
+
+            set_intersection(v1.begin(),v1.end(),
+                             v2.begin(),v2.end(),
+                             back_inserter(v3));
+            return v3;
+        }   
+
+        set<string> vectoset(vector<string> str){
+            set<string> res;
+            for (int i=0; i<str.size(); i++){
+                res.insert(str[i]);
+            }
+        }    
+/*
+        set<string> separarSET(string doc){
+            set<string> resultado;
+                int i = 0;
+                for(auto x: doc){
+                    if(x == ' '){
+                    resultado.push_back("");
+                    i++;
+                    }
+                    else{
+                        resultado[i].push_back(x);
+                    }
+                }
+                for (int i = 0; i < resultado.size(); i++){
+                    resultado[i] = normalizar(resultado[i]);
+                }
+                return resultado;
+        }*/
+
         vector<string> separar(string doc){
             vector<string> resultado(0);
                 resultado.push_back("");

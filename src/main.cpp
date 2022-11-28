@@ -41,8 +41,13 @@ int main()
     filesystem::path dir;
     dir = "input";
     for (const auto& entry : filesystem::directory_iterator(dir)){
-        cout << entry.path();
+        index.indexar( filetostr(entry.path()), entry.path() );
     }  
+
+    set<string> consulta = index.consulta();
+    for (string const& docnome : consulta){
+        cout << docnome << "\n"; 
+    }
     
     
 
