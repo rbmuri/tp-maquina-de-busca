@@ -1,6 +1,14 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest.h>
 #include <indexacao.h>
+set<string> vectoset(vector<string> str){
+            set<string> res;
+            pair<set<string>::iterator,bool> ptr;
+            for(int i=0; i<str.size(); i++){
+                ptr = res.insert(str[i]);
+            }
+            return res;
+        }
 string normalizar(string palavra)
 {
     string resultado;
@@ -149,4 +157,17 @@ TEST_CASE("separar")
         CHECK(testar == "");
     }
     //* Teste do método privado normalizar para um caso de string vazia.
+}
+TEST_CASE("vector -> set"){
+    vector<string> inicio(0);
+    set<string> fim;
+    SUBCASE("vectoset padrão 1"){
+        inicio.push_back("eu");
+        inicio.push_back("sou");
+        inicio.push_back("lindo");
+        fim = vectoset(inicio);
+        for(int i = 0; i < inicio.size(); i++){
+            CHECK(fim.count(inicio[i]) == 1);
+        }
+    }
 }
