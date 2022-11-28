@@ -31,29 +31,24 @@ string normalizar(string palavra)
     return resultado;
 }
 //* Normaliza as palavras.
-vector<string> separar(string doc)
-{
-    vector<string> resultado(0);
-    resultado.push_back("");
-    int i = 0;
-    for (auto x : doc)
-    {
-        if (x == ' ')
-        {
-            resultado.push_back("");
-            i++;
+vector<string> separar(string doc){
+            vector<string> resultado(0);
+                resultado.push_back("");
+                int i = 0;
+                for(auto x: doc){
+                    if(x == ' '){
+                    resultado.push_back("");
+                    i++;
+                    }
+                    else{
+                        resultado[i].push_back(x);
+                    }
+                }
+                for (int i = 0; i < resultado.size(); i++){
+                    resultado[i] = normalizar(resultado[i]);
+                }
+                return resultado;
         }
-        else
-        {
-            resultado[i].push_back(x);
-        }
-    }
-    for (int i = 0; i < resultado.size(); i++)
-    {
-        resultado[i] = normalizar(resultado[i]);
-    }
-    return resultado;
-}
 //* Divide as palavras da string(que era um documento) e as normaliza.
 
 TEST_CASE("separar")

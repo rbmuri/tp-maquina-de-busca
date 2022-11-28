@@ -20,6 +20,13 @@ vector<string> filetostr(string dir){
     return sfile;
 }
 
+void imprimirset(set<string> docs){
+    set<string>::iterator it;
+    for (it = docs.begin(); it != docs.end(); it++){
+        cout << *it << "\n";
+    }
+} 
+
 
 
 
@@ -43,11 +50,10 @@ int main()
     for (const auto& entry : filesystem::directory_iterator(dir)){
         index.indexar( filetostr(entry.path()), entry.path() );
     }  
-
+    cout << "=-=-=-=- Digite sua consulta. -=-=-=-=\n";
     set<string> consulta = index.consulta();
-    for (string const& docnome : consulta){
-        cout << docnome << "\n"; 
-    }
+    cout << "consulta concluída.\n";
+    imprimirset(consulta);
     
     
 
