@@ -55,7 +55,6 @@ class Indice {
                 res.insert(str[i]);
             }
         }    
-/*
         set<string> separarSET(string doc){
             set<string> resultado;
                 int i = 0;
@@ -72,7 +71,7 @@ class Indice {
                     resultado[i] = normalizar(resultado[i]);
                 }
                 return resultado;
-        }*/
+        }
 
         vector<string> separar(string doc){
             vector<string> resultado(0);
