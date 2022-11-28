@@ -21,7 +21,7 @@ class Indice {
         void indexar(vector<string> doclista, string nome){
             int i;
             for (i=0; i<doclista.size(); i++){
-                indice_[doclista[i]].insert(nome); 
+                indice_[normalizar(doclista[i])].insert(nome); 
             }
         }
         ~Indice(){
@@ -39,14 +39,17 @@ class Indice {
             }
             set<string> palavras = vectoset( vet );
             cout << "\nvetor de palavras transformado em set:\n";
+            imprimirset(palavras);
+
             set<string> docs = indice_[vet[0]];
-            cout << "output criada da primeira palavra.\n";
+            cout << "\noutput pré-criada da primeira palavra.\n";
             for (int x = 0; x<vet.size(); x++){
-                cout << "entrou no for.\n";
+                if (x==0) {cout << "\nentrou no for.\n";}
                 set<string> temp = indice_[vet[x]];
-                cout << "output criada da palavra " << vet[x];
+                cout << "\nset temp criado da palavra - " << vet[x] << " -";
                 docs = intersecao(docs, temp);
-                cout << " e adicionada.\n";
+                cout << " e adicionado no resultado. \nset temporário:\n";
+                imprimirset(temp);
             }
             return docs;
         }

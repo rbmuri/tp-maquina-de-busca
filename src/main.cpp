@@ -20,17 +20,6 @@ vector<string> filetostr(string dir){
     return sfile;
 }
 
-void imprimirset(set<string> docs){
-    set<string>::iterator it;
-    for (it = docs.begin(); it != docs.end(); it++){
-        cout << *it << "\n";
-    }
-} 
-
-
-
-
-
 int main()
 {
     string nome;
