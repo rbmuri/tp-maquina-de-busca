@@ -7,6 +7,13 @@
 
 using namespace std;
 
+void imprimirset(set<string> docs){
+    set<string>::iterator it;
+    for (it = docs.begin(); it != docs.end(); it++){
+        cout << *it << "\n";
+    }
+} 
+
 class Indice {
     public:
         Indice(){
