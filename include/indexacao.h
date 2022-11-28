@@ -29,49 +29,27 @@ class Indice {
             for (auto x : palavras){
                 
                 set<string> temp = indice_[x];
-                docs = intersection(docs, temp);
+                docs = intersecao(docs, temp);
             }
             return docs;
         }
 
     protected:
 
-        set<string> intersection(set<string> v1, set<string> v2){
-            set<string> v3;
-
-            sort(v1.begin(), v1.end());
-            sort(v2.begin(), v2.end());
-
-            set_intersection(v1.begin(),v1.end(),
-                             v2.begin(),v2.end(),
-                             back_inserter(v3));
-            return v3;
-        }   
-
         set<string> vectoset(vector<string> str){
             set<string> res;
             for (int i=0; i<str.size(); i++){
                 res.insert(str[i]);
             }
-        }    
-/*
-        set<string> separarSET(string doc){
-            set<string> resultado;
-                int i = 0;
-                for(auto x: doc){
-                    if(x == ' '){
-                    resultado.push_back("");
-                    i++;
-                    }
-                    else{
-                        resultado[i].push_back(x);
-                    }
-                }
-                for (int i = 0; i < resultado.size(); i++){
-                    resultado[i] = normalizar(resultado[i]);
-                }
-                return resultado;
-        }*/
+        }  
+
+        set<string> intersecao(set<string> s1, set<string> s2){
+            vector<string> s1s2;
+            set_intersection(s1.begin(), s1.end(),
+                             s2.begin(), s2.end(),
+                             std::back_inserter(s1s2));
+            return vectoset(s1s2);
+        }  
 
         vector<string> separar(string doc){
             vector<string> resultado(0);
