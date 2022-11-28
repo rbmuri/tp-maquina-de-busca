@@ -21,15 +21,25 @@ class Indice {
         }
         
         set<string> consulta(){
-            string cons;
-            cin >> cons;
+            string cons, each;
+            getline (cin, cons);
+            cout << "\npalavras armazenadas: " << cons << "\n\n";
+        
             vector<string> vet = separar(cons);
+            cout << "palavras separadas em um vet de size " << vet.size() << ":\n";
+            for (int x = 0; x<vet.size(); x++){
+                cout << vet[x] << "\n";
+            }
             set<string> palavras = vectoset( vet );
+            cout << "\nvetor de palavras transformado em set:\n";
             set<string> docs = indice_[vet[0]];
-            for (auto x : palavras){
-                
-                set<string> temp = indice_[x];
+            cout << "output criada da primeira palavra.\n";
+            for (int x = 0; x<vet.size(); x++){
+                cout << "entrou no for.\n";
+                set<string> temp = indice_[vet[x]];
+                cout << "output criada da palavra " << vet[x];
                 docs = intersecao(docs, temp);
+                cout << " e adicionada.\n";
             }
             return docs;
         }
@@ -41,6 +51,7 @@ class Indice {
             for (int i=0; i<str.size(); i++){
                 res.insert(str[i]);
             }
+            return res;
         }  
 
         set<string> intersecao(set<string> s1, set<string> s2){
