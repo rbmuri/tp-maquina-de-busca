@@ -12,9 +12,10 @@ class Indice {
         Indice(){
         }
         void indexar(vector<string> doclista, string nome){
-            int i;
+            int i; set<string> a(0);
+            indice.insert(nome, a)
             for (i=0; i<doclista.size(); i++){
-                indice_[doclista[i]].insert(nome); 
+                indice_[nome].insert(doclista[i]); 
             }
         }
         ~Indice(){
