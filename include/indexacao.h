@@ -51,10 +51,12 @@ class Indice {
 
         set<string> vectoset(vector<string> str){
             set<string> res;
-            for (int i=0; i<str.size(); i++){
-                res.insert(str[i]);
+            pair<set<string>::iterator,bool> ptr;
+            for(int i=0; i<str.size(); i++){
+                ptr = res.insert(str[i]);
             }
-        }    
+            return res;
+        }      
         
 
         vector<string> separar(string doc){
