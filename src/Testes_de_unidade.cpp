@@ -1,6 +1,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest.h>
 #include <indexacao.h>
+#include <filesystem>
+#include <fstream>
 
 set<string> intersecao(set<string> s1, set<string> s2)
 {
@@ -264,10 +266,5 @@ TEST_CASE("intersecao"){
         set<string> testeS05_02 = {};
         set<string> testeS05_03 = intersecao(testeS05_01, testeS05_02);
         CHECK(testeS05_03.size() == 0);
-    }
-}
-TEST_CASE("consulta"){
-    SUBCASE("consulta padrão 1"){
-        
     }
 }
