@@ -11,14 +11,6 @@ int main()
     Indice index;
     nome = "README.txt";
 
-    
-
-/*
-    for (directory_entry& entry : directory_iterator("./input")){
-    vector<string> sfile = filetostr(entry.path());
-    index.indexar(sfile, entry.path())
-    }  
-*/
     filesystem::path dir;
     dir = "input";
     for (const auto& entry : filesystem::directory_iterator(dir)){
@@ -29,9 +21,6 @@ int main()
     cout << "consulta concluída. resultados:\n";
     imprimirset(consulta);
     
-    
-
-    /*index.indexar(file, nome);*/
 
     return 0;
 }

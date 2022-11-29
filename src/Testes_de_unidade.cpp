@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest.h>
 #include <indexacao.h>
+
 string normalizar(string palavra)
 {
     string resultado;
@@ -31,6 +32,7 @@ string normalizar(string palavra)
     return resultado;
 }
 //* Normaliza as palavras.
+
 vector<string> separar(string doc){
             vector<string> resultado(0);
                 resultado.push_back("");
@@ -144,4 +146,53 @@ TEST_CASE("separar")
         CHECK(testar == "");
     }
     //* Teste do método privado normalizar para um caso de string vazia.
+}
+TEST_CASE("filetostr"){
+    SUBCASE("filetostr padrão 1"){
+        vector<string> testef_01(0);
+        testef_01 = filetostr("imput/CASOS_BOLOTA_TESTÃO.txt");
+        CHECK(testef_01.size() == 9);
+        CHECK(testef_01[0] == "A");
+        CHECK(testef_01[1] == "bolota");
+        CHECK(testef_01[2] == "do");
+        CHECK(testef_01[3] == "esquilo");
+        CHECK(testef_01[4] == "da");
+        CHECK(testef_01[5] == "minha");
+        CHECK(testef_01[6] == "casa");
+        CHECK(testef_01[7] == "está");
+        CHECK(testef_01[8] == "estragada.");
+    }
+    SUBCASE("filetostr padrão 2"){
+        vector<string> testef_02(0);
+        testef_02 = filetostr("imput/CASOS_BOLOTA_TESTE.txt");
+        CHECK(testef_02.size() == 9);
+        CHECK(testef_02[0] == "A");
+        CHECK(testef_02[1] == "bolota");
+        CHECK(testef_02[2] == "do");
+        CHECK(testef_02[3] == "esquilo");
+        CHECK(testef_02[4] == "da");
+        CHECK(testef_02[5] == "minha");
+        CHECK(testef_02[6] == "casa");
+        CHECK(testef_02[7] == "está");
+        CHECK(testef_02[8] == "estragada.");
+    }
+    SUBCASE("filetostr padrão 3"){
+        vector<string> testef_03(0);
+        testef_03 = filetostr("imput/CASOS_CHOCOLATE_TESTINHO.txt");
+        CHECK(testef_03.size() == 9);
+        CHECK(testef_03[0] == "A");
+        CHECK(testef_03[1] == "bolota");
+        CHECK(testef_03[2] == "do");
+        CHECK(testef_03[3] == "esquilo");
+        CHECK(testef_03[4] == "da");
+        CHECK(testef_03[5] == "minha");
+        CHECK(testef_03[6] == "casa");
+        CHECK(testef_03[7] == "está");
+        CHECK(testef_03[8] == "estragada.");
+    }
+    SUBCASE("filetostr vazio"){
+        vector<string> testef_04(0);
+        testef_04 = filetostr("imput/CASOS_TESTE_VAZIO.txt");
+        CHECK(testef_04.size() == 0);
+    }
 }
