@@ -5,21 +5,6 @@
 
 using namespace std;
 
-//* turns a file to a vector of strings
-vector<string> filetostr(string dir){
-    vector<string> sfile;
-    string word;
-    fstream file;
-    file.open(dir);
-
-    while (file.good()) {
-        file >> word;
-        sfile.push_back(word);
-    }  
-    sfile.pop_back();
-    return sfile;
-}
-
 int main()
 {
     string nome;
