@@ -1,6 +1,6 @@
 # CC and flags
 CC = g++
-CXXFLAGS = -std=c++17 -g -Wall
+CXXFLAGS = -std=c++17 -g -Wall --coverage
 
 # folders
 INCLUDE_FOLDER = ./include/
