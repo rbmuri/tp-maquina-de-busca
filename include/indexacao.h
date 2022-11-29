@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -42,6 +43,8 @@ class Indice {
         ~Indice(){
         }
         
+        /*
+        FUNÇÃO CONSULTA DEBUGADA
         set<string> consulta(){
             string cons, each;
             getline (cin, cons);
@@ -65,6 +68,22 @@ class Indice {
                 docs = intersecao(docs, temp);
                 cout << " e adicionado no resultado. \nset temporário:\n";
                 imprimirset(temp);
+            }
+            return docs;
+        }
+        */
+
+        set<string> consulta(){
+            string cons, each;
+            getline (cin, cons);
+        
+            vector<string> vet = separar(cons);
+            
+            set<string> docs = indice_[vet[0]];
+            
+            for (int x = 0; x<vet.size(); x++){
+                set<string> temp = indice_[vet[x]];
+                docs = intersecao(docs, temp);               
             }
             return docs;
         }

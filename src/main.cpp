@@ -26,7 +26,7 @@ int main()
     }  
     cout << "=-=-=-=- Digite sua consulta. -=-=-=-=\n";
     set<string> consulta = index.consulta();
-    cout << "consulta concluída.\n";
+    cout << "consulta concluída. resultados:\n";
     imprimirset(consulta);
     
     
