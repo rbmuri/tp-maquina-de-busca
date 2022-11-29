@@ -42,37 +42,7 @@ class Indice {
         }
         ~Indice(){
         }
-        
-        /*
-        FUNÇÃO CONSULTA DEBUGADA
-        set<string> consulta(){
-            string cons, each;
-            getline (cin, cons);
-            cout << "\npalavras armazenadas: " << cons << "\n\n";
-        
-            vector<string> vet = separar(cons);
-            cout << "palavras separadas em um vet de size " << vet.size() << ":\n";
-            for (int x = 0; x<vet.size(); x++){
-                cout << vet[x] << "\n";
-            }
-            set<string> palavras = vectoset( vet );
-            cout << "\nvetor de palavras transformado em set:\n";
-            imprimirset(palavras);
-
-            set<string> docs = indice_[vet[0]];
-            cout << "\noutput pré-criada da primeira palavra.\n";
-            for (int x = 0; x<vet.size(); x++){
-                if (x==0) {cout << "\nentrou no for.\n";}
-                set<string> temp = indice_[vet[x]];
-                cout << "\nset temp criado da palavra - " << vet[x] << " -";
-                docs = intersecao(docs, temp);
-                cout << " e adicionado no resultado. \nset temporário:\n";
-                imprimirset(temp);
-            }
-            return docs;
-        }
-        */
-
+    
         set<string> consulta(){
             string cons, each;
             getline (cin, cons);
@@ -90,20 +60,16 @@ class Indice {
 
     protected:
 
-        set<string> vectoset(vector<string> str){
-            set<string> res;
-            for (int i=0; i<str.size(); i++){
-                res.insert(str[i]);
-            }
-            return res;
-        }  
-
         set<string> intersecao(set<string> s1, set<string> s2){
             vector<string> s1s2;
+            set<string> s1_s2;
             set_intersection(s1.begin(), s1.end(),
                              s2.begin(), s2.end(),
                              std::back_inserter(s1s2));
-            return vectoset(s1s2);
+            for (int i=0; i<s1s2.size(); i++){
+                s1_s2.insert(s1s2[i]);
+            }
+            return s1_s2;
         }  
 
         vector<string> separar(string doc){
@@ -124,7 +90,7 @@ class Indice {
                 }
                 return resultado;
         }
-        //* Divide as palavras da String(doc) e as normaliza.
+        //* Divide as palavras da string documento e as normaliza.
     
         string normalizar(string palavra){
             string resultado;

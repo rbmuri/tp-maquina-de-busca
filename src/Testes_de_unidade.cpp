@@ -2,6 +2,19 @@
 #include <doctest.h>
 #include <indexacao.h>
 
+set<string> intersecao(set<string> s1, set<string> s2)
+{
+            vector<string> s1s2;
+            set<string> s1_s2;
+            set_intersection(s1.begin(), s1.end(),
+                             s2.begin(), s2.end(),
+                             std::back_inserter(s1s2));
+            for (int i=0; i<s1s2.size(); i++){
+                s1_s2.insert(s1s2[i]);
+            }
+            return s1_s2;
+}
+
 string normalizar(string palavra)
 {
     string resultado;
@@ -150,7 +163,7 @@ TEST_CASE("separar")
 TEST_CASE("filetostr"){
     SUBCASE("filetostr padrão 1"){
         vector<string> testef_01(0);
-        testef_01 = filetostr("imput/CASOS_BOLOTA_TESTÃO.txt");
+        testef_01 = filetostr("input/CASOS_BOLOTA_TESTÃO.txt");
         CHECK(testef_01.size() == 9);
         CHECK(testef_01[0] == "A");
         CHECK(testef_01[1] == "bolota");
@@ -164,7 +177,7 @@ TEST_CASE("filetostr"){
     }
     SUBCASE("filetostr padrão 2"){
         vector<string> testef_02(0);
-        testef_02 = filetostr("imput/CASOS_BOLOTA_TESTE.txt");
+        testef_02 = filetostr("input/CASOS_BOLOTA_TESTE.txt");
         CHECK(testef_02.size() == 9);
         CHECK(testef_02[0] == "A");
         CHECK(testef_02[1] == "bolota");
@@ -178,7 +191,7 @@ TEST_CASE("filetostr"){
     }
     SUBCASE("filetostr padrão 3"){
         vector<string> testef_03(0);
-        testef_03 = filetostr("imput/CASOS_CHOCOLATE_TESTINHO.txt");
+        testef_03 = filetostr("input/CASOS_CHOCOLATE_TESTINHO.txt");
         CHECK(testef_03.size() == 9);
         CHECK(testef_03[0] == "A");
         CHECK(testef_03[1] == "bolota");
@@ -192,7 +205,69 @@ TEST_CASE("filetostr"){
     }
     SUBCASE("filetostr vazio"){
         vector<string> testef_04(0);
-        testef_04 = filetostr("imput/CASOS_TESTE_VAZIO.txt");
+        testef_04 = filetostr("input/CASOS_TESTE_VAZIO.txt");
         CHECK(testef_04.size() == 0);
+    }
+}
+TEST_CASE("intersecao"){
+    SUBCASE("intersecao padrão 1"){
+        set<string> testeS01_01 = {"1", "2", "3", "colher", "batata", "recheada"};
+        set<string> testeS01_02 = {"3", "4", "5", "colher", "trufa", "recheada"};
+        set<string> testeS01_03 = intersecao(testeS01_01, testeS01_02);
+        vector<string> checkS_01(0);
+        CHECK(testeS01_03.size() == 3);
+        for(auto it = testeS01_03.begin(); it != testeS01_03.end(); ++it){
+            checkS_01.push_back(*(it));
+        }
+        CHECK(checkS_01.size() == 3);
+        CHECK(checkS_01[0] == "3");
+        CHECK(checkS_01[1] == "colher");
+        CHECK(checkS_01[2] == "recheada");
+    }
+    SUBCASE("intersecao padrão 2"){
+        set<string> testeS02_01 = {"1", "2", "3", "4", "5", "6"};
+        set<string> testeS02_02 = {"3", "4", "5", "35", "44", "56"};
+        set<string> testeS02_03 = intersecao(testeS02_01, testeS02_02);
+        vector<string> checkS_02(0);
+        CHECK(testeS02_03.size() == 3);
+        for(auto it = testeS02_03.begin(); it != testeS02_03.end(); ++it){
+            checkS_02.push_back(*(it));
+        }
+        CHECK(checkS_02.size() == 3);
+        CHECK(checkS_02[0] == "3");
+        CHECK(checkS_02[1] == "4");
+        CHECK(checkS_02[2] == "5");
+    }
+    SUBCASE("intersecao padrão 3"){
+        set<string> testeS03_01 = {".", "..", "...", "/", " ", ""};
+        set<string> testeS03_02 = {".", "..", "....", "//", " ", ""};
+        set<string> testeS03_03 = intersecao(testeS03_01, testeS03_02);
+        vector<string> checkS_03(0);
+        CHECK(testeS03_03.size() == 4);
+        for(auto it = testeS03_03.begin(); it != testeS03_03.end(); ++it){
+            checkS_03.push_back(*(it));
+        }
+        CHECK(checkS_03.size() == 4);
+        CHECK(checkS_03[0] == "");
+        CHECK(checkS_03[1] == " ");
+        CHECK(checkS_03[2] == ".");
+        CHECK(checkS_03[3] == "..");
+    }
+    SUBCASE("intersecao vazia"){
+        set<string> testeS04_01 = {"1", "2", "6", "colher", "batata", "recheada"};
+        set<string> testeS04_02 = {"3", "4", "5", "mulher", "trufa", "rechaçada"};
+        set<string> testeS04_03 = intersecao(testeS04_01, testeS04_02);
+        CHECK(testeS04_03.size() == 0);
+    }
+    SUBCASE("intersecao sets vazios"){
+        set<string> testeS05_01 = {};
+        set<string> testeS05_02 = {};
+        set<string> testeS05_03 = intersecao(testeS05_01, testeS05_02);
+        CHECK(testeS05_03.size() == 0);
+    }
+}
+TEST_CASE("consulta"){
+    SUBCASE("consulta padrão 1"){
+        
     }
 }
