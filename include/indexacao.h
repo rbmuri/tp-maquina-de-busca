@@ -40,6 +40,12 @@ class Indice {
                 indice_[normalizar(doclista[i])].insert(nome); 
             }
         }
+        set<string> verifyindex(string word){
+            word = normalizar(word);
+            set<string> res = indice_[word];
+            return res;
+        }
+
         ~Indice(){
         }
     
